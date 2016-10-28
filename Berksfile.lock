@@ -1,0 +1,7 @@
+DEPENDENCIES
+  ohai
+
+GRAPH
+  compat_resource (12.16.1)
+  ohai (4.2.2)
+    compat_resource (>= 12.14)
