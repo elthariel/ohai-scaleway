@@ -13,9 +13,6 @@ populate `node[scw]` with the content of `scw-metadata`.
 ### Chef
 
 - Chef 12.0 or later
-- The plugin is installed in the `ohai/plugins` folder of your chef conf folder (usually /etc/chef). The plugin folder must be your `ohai.plugin_path` (Can bet set in chef-client.config).
-
-On standard setup, you can just add `ohai.plugin_path << '/etc/chef/ohai/plugins'` to `/etc/chef/chef-client.rb`
 
 ### Cookbooks
 
@@ -41,7 +38,7 @@ attributes include:
 
 ### ohai-scaleway::default
 
-Just include `ohai-scaleway` in your node's `run_list`:
+Include `ohai-scaleway` in your node's `run_list`:
 
 ```json
 {
@@ -51,6 +48,14 @@ Just include `ohai-scaleway` in your node's `run_list`:
   ]
 }
 ```
+
+Then, to avoid reloading ohai at every-run, add the plugin folder into
+the `ohai.plugin_path` (can bet set in chef-client.rb) The plugin is
+installed in the `ohai/plugins` folder of your chef conf folder
+(usually /etc/chef). .
+
+On standard setup, you can just add `ohai.plugin_path << '/etc/chef/ohai/plugins'` to `/etc/chef/chef-client.rb`
+
 
 ## Contributing
 
