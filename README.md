@@ -54,7 +54,7 @@ the `ohai.plugin_path` (can bet set in chef-client.rb) The plugin is
 installed in the `ohai/plugins` folder of your chef conf folder
 (usually /etc/chef). .
 
-On standard setup, you can just add `ohai.plugin_path << '/etc/chef/ohai/plugins'` to `/etc/chef/chef-client.rb`
+On standard setup, you can just add `ohai.plugin_path << '/etc/chef/ohai/plugins'` to `/etc/chef/chef-client.rb` (or `Ohai::Config[:plugin_path] << '/etc/chef/ohai/plugins'` on older versions)
 
 
 ## Contributing
