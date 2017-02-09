@@ -3,7 +3,11 @@
 # Scaleway's boxes and collect the metadata there
 #
 
-scw_metadata = "/usr/local/bin/scw-metadata"
+scw_metadata = if File.executable?('/usr/local/bin/scw-metadata')
+                 '/usr/local/bin/scw-metadata'
+               else
+                 '/run/initramfs/usr/bin/scw-metadata'
+               end
 
 Ohai.plugin(:Scaleway) do
   provides 'scw'
