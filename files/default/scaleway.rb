@@ -24,7 +24,7 @@ Ohai.plugin(:Scaleway) do
         cmd.stdout.chomp.split("\n").each do |line|
           items = line.split('=')
           key = items[0].downcase
-          value = items[1]
+          value = items[1].gsub("'", "")
 
           scw[key.to_sym] = value
           Ohai::Log.debug "Scaleway metadata: found #{key} = #{value}"
