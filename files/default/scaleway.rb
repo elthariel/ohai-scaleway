@@ -3,13 +3,13 @@
 # Scaleway's boxes and collect the metadata there
 #
 
-SCW_METADATA_POSSIBLE_PATHS = [
-  "/usr/local/bin/scw-metadata",
-  "/usr/bin/scw-metadata"
-]
-
 def find_scw_metadata
-  SCW_METADATA_POSSIBLE_PATHS.find do |path|
+  possible_paths = [
+    "/usr/local/bin/scw-metadata",
+    "/usr/bin/scw-metadata"
+  ]
+
+  possible_paths.find do |path|
     File.executable? path
   end
 end
