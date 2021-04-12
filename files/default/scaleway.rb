@@ -3,14 +3,24 @@
 # Scaleway's boxes and collect the metadata there
 #
 
-scw_metadata = "/usr/local/bin/scw-metadata"
+SCW_METADATA_POSSIBLE_PATHS = [
+  "/usr/local/bin/scw-metadata",
+  "/usr/bin/scw-metadata"
+]
+
+def find_scw_metadata
+  SCW_METADATA_POSSIBLE_PATHS.find do |path|
+    File.executable? path
+  end
+end
 
 Ohai.plugin(:Scaleway) do
   provides 'scw'
 
   collect_data do
 
-    if File.exists? scw_metadata
+    scw_metadata = find_scw_metadata
+    if scw_metadata
       Ohai::Log.info "Loading Scaleway metdata..."
       cmd = Mixlib::ShellOut.new(scw_metadata, user: 'root').run_command
       if cmd.error?
